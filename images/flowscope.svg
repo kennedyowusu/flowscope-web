@@ -1,0 +1,45 @@
+<svg width="680" height="680" viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .ring { fill: none; stroke: #4FC3F7; }
+    .ring-dim { fill: none; stroke: #4FC3F7; opacity: 0.25; }
+    .crosshair { stroke: #4FC3F7; stroke-linecap: round; }
+    .dot-cyan { fill: #4FC3F7; }
+    .dot-green { fill: #00E676; }
+    .dot-yellow { fill: #FFD740; }
+    .flow-line { fill: none; stroke-linecap: round; }
+  </style>
+
+  <!-- Dark background -->
+  <rect x="0" y="0" width="680" height="680" rx="80" fill="#0D0D0D"/>
+
+  <!-- Outer rings -->
+  <circle cx="340" cy="340" r="240" class="ring-dim" stroke-width="1.2"/>
+  <circle cx="340" cy="340" r="180" class="ring" stroke-width="1.5"/>
+  <circle cx="340" cy="340" r="118" class="ring" stroke-width="2"/>
+  <circle cx="340" cy="340" r="52" class="ring" stroke-width="2.5"/>
+
+  <!-- Crosshair lines -->
+  <line x1="340" y1="100" x2="340" y2="222" class="crosshair" stroke-width="1.2" opacity="0.5"/>
+  <line x1="340" y1="458" x2="340" y2="580" class="crosshair" stroke-width="1.2" opacity="0.5"/>
+  <line x1="100" y1="340" x2="222" y2="340" class="crosshair" stroke-width="1.2" opacity="0.5"/>
+  <line x1="458" y1="340" x2="580" y2="340" class="crosshair" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- Tick marks -->
+  <line x1="340" y1="100" x2="340" y2="116" stroke="#4FC3F7" stroke-width="3" opacity="0.9"/>
+  <line x1="340" y1="564" x2="340" y2="580" stroke="#4FC3F7" stroke-width="3" opacity="0.9"/>
+  <line x1="100" y1="340" x2="116" y2="340" stroke="#4FC3F7" stroke-width="3" opacity="0.9"/>
+  <line x1="564" y1="340" x2="580" y2="340" stroke="#4FC3F7" stroke-width="3" opacity="0.9"/>
+
+  <!-- Flow line -->
+  <path d="M 210 340 Q 245 268 295 285 Q 325 295 340 340 Q 358 390 408 378 Q 448 368 470 340"
+        class="flow-line" stroke="#4FC3F7" stroke-width="3.5" opacity="0.95"/>
+
+  <!-- Event dots -->
+  <circle cx="248" cy="272" r="9" class="dot-green"/>
+  <circle cx="340" cy="340" r="11" class="dot-cyan"/>
+  <circle cx="412" cy="376" r="9" class="dot-yellow"/>
+
+  <!-- Center dot -->
+  <circle cx="340" cy="340" r="6" fill="#0D0D0D"/>
+  <circle cx="340" cy="340" r="3" class="dot-cyan"/>
+</svg>

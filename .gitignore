@@ -1,0 +1,10 @@
+.history/** /node_modules/**
+/dist/** /build/** /out/**
+/.vscode/** /.idea/** /*.log
+.DS_Store
+*.env
+*.local
+*.pem
+*.key
+*.crt
+*.pfx
