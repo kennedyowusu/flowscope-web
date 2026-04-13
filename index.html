@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html class="dark" lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>FlowScope — Debug your Flutter app without leaving it</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
 
   <!-- Favicon -->
- <link rel="icon" type="image/png" href="images/flowscope.png" />
- <link rel="apple-touch-icon" href="images/flowscope.png" />
+  <link rel="icon" type="image/png" href="images/flowscope.png" />
+  <link rel="apple-touch-icon" href="images/flowscope.png" />
 
- <!-- Open Graph (for link previews on Twitter, LinkedIn, WhatsApp) -->
- <meta property="og:title" content="FlowScope — Debug your Flutter app without leaving it" />
- <meta property="og:description" content="Real-time state inspection, network monitoring, and event timeline — all from an in-app overlay." />
- <meta property="og:image" content="images/flowscope.png" />
- <meta property="og:url" content="https://flowscope.dev" />
- <meta property="og:type" content="website" />
+  <!-- Open Graph (for link previews on Twitter, LinkedIn, WhatsApp) -->
+  <meta property="og:title" content="FlowScope — Debug your Flutter app without leaving it" />
+  <meta property="og:description"
+    content="Real-time state inspection, network monitoring, and event timeline — all from an in-app overlay." />
+  <meta property="og:image" content="images/flowscope.png" />
+  <meta property="og:url" content="https://flowscope.dev" />
+  <meta property="og:type" content="website" />
 
- <!-- Twitter Card -->
- <meta name="twitter:card" content="summary_large_image" />
- <meta name="twitter:title" content="FlowScope — Debug your Flutter app without leaving it" />
- <meta name="twitter:description" content="Real-time state inspection, network monitoring, and event timeline — all from an in-app overlay." />
- <meta name="twitter:image" content="images/flowscope.png" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="FlowScope — Debug your Flutter app without leaving it" />
+  <meta name="twitter:description"
+    content="Real-time state inspection, network monitoring, and event timeline — all from an in-app overlay." />
+  <meta name="twitter:image" content="images/flowscope.png" />
 
   <script id="tailwind-config">
     tailwind.config = {
@@ -97,20 +103,24 @@
   </script>
   <style>
     .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      font-variation-settings: 'FILL'0, 'wght'300, 'GRAD'0, 'opsz'24;
     }
+
     body {
       background-color: #0D0D0D;
       font-family: 'Inter', sans-serif;
       min-height: max(884px, 100dvh);
     }
+
     .code-block {
       font-family: 'JetBrains Mono', monospace;
       background-color: #0e0e0e;
     }
+
     .kinetic-border {
       border: 1px solid rgba(79, 195, 247, 0.1);
     }
+
     .kinetic-glow:hover {
       box-shadow: 0 0 15px rgba(79, 195, 247, 0.15);
     }
@@ -119,11 +129,13 @@
     #mobile-menu {
       display: none;
     }
+
     #mobile-menu.open {
       display: flex;
     }
   </style>
 </head>
+
 <body class="text-on-surface selection:bg-primary-container selection:text-on-primary-container">
 
   <!-- Header -->
@@ -136,13 +148,17 @@
 
       <!-- Desktop nav -->
       <nav class="hidden md:flex items-center gap-8">
-        <a class="text-[#4FC3F7] border-b-2 border-[#4FC3F7] font-mono text-xs uppercase tracking-widest transition-colors duration-200" href="#">Documentation</a>
-        <a class="text-gray-400 font-mono text-xs uppercase tracking-widest hover:text-[#4FC3F7] transition-colors duration-200" href="https://pub.dev/packages/flowscope/changelog">Changelog</a>
-        <a class="text-gray-400 font-mono text-xs uppercase tracking-widest hover:text-[#4FC3F7] transition-colors duration-200" href="https://github.com/kennedyowusu/flowscope" target="_blank" rel="noopener">GitHub</a>
+        <a class="text-[#4FC3F7] border-b-2 border-[#4FC3F7] font-mono text-xs uppercase tracking-widest transition-colors duration-200"
+          href="#">Documentation</a>
+        <a class="text-gray-400 font-mono text-xs uppercase tracking-widest hover:text-[#4FC3F7] transition-colors duration-200"
+          href="https://pub.dev/packages/flowscope/changelog">Changelog</a>
+        <a class="text-gray-400 font-mono text-xs uppercase tracking-widest hover:text-[#4FC3F7] transition-colors duration-200"
+          href="https://github.com/kennedyowusu/flowscope" target="_blank" rel="noopener">GitHub</a>
       </nav>
 
       <!-- Hamburger -->
-      <button id="hamburger-btn" class="md:hidden flex flex-col justify-center items-center gap-1.5 p-2" aria-label="Toggle menu">
+      <button id="hamburger-btn" class="md:hidden flex flex-col justify-center items-center gap-1.5 p-2"
+        aria-label="Toggle menu">
         <span class="block w-6 h-0.5 bg-[#4FC3F7] transition-all duration-300" id="bar1"></span>
         <span class="block w-6 h-0.5 bg-[#4FC3F7] transition-all duration-300" id="bar2"></span>
         <span class="block w-6 h-0.5 bg-[#4FC3F7] transition-all duration-300" id="bar3"></span>
@@ -151,9 +167,12 @@
 
     <!-- Mobile menu -->
     <div id="mobile-menu" class="flex-col gap-0 bg-[#0D0D0D] border-t border-[#2A2A2A] md:hidden">
-      <a class="px-6 py-4 text-[#4FC3F7] font-mono text-xs uppercase tracking-widest border-b border-[#1A1A1A] hover:bg-[#1A1A1A] transition-colors" href="#">Documentation</a>
-      <a class="px-6 py-4 text-gray-400 font-mono text-xs uppercase tracking-widest border-b border-[#1A1A1A] hover:bg-[#1A1A1A] transition-colors" href="https://pub.dev/packages/flowscope/changelog">Changelog</a>
-      <a class="px-6 py-4 text-gray-400 font-mono text-xs uppercase tracking-widest hover:bg-[#1A1A1A] transition-colors" href="https://github.com/kennedyowusu/flowscope" target="_blank" rel="noopener">GitHub</a>
+      <a class="px-6 py-4 text-[#4FC3F7] font-mono text-xs uppercase tracking-widest border-b border-[#1A1A1A] hover:bg-[#1A1A1A] transition-colors"
+        href="#">Documentation</a>
+      <a class="px-6 py-4 text-gray-400 font-mono text-xs uppercase tracking-widest border-b border-[#1A1A1A] hover:bg-[#1A1A1A] transition-colors"
+        href="https://pub.dev/packages/flowscope/changelog">Changelog</a>
+      <a class="px-6 py-4 text-gray-400 font-mono text-xs uppercase tracking-widest hover:bg-[#1A1A1A] transition-colors"
+        href="https://github.com/kennedyowusu/flowscope" target="_blank" rel="noopener">GitHub</a>
     </div>
   </header>
 
@@ -162,18 +181,26 @@
     <!-- Hero -->
     <section class="max-w-[1440px] mx-auto px-6 py-20 lg:py-32 flex flex-col items-center text-center">
       <div class="mb-6 flex flex-wrap justify-center gap-3">
-        <span class="px-3 py-1 bg-surface-container-high text-primary text-[10px] font-mono tracking-tighter uppercase border border-outline-variant/20">pub.dev v0.3.0</span>
-        <span class="px-3 py-1 bg-surface-container-high text-secondary text-[10px] font-mono tracking-tighter uppercase border border-outline-variant/20">MIT License</span>
-        <span class="px-3 py-1 bg-surface-container-high text-tertiary text-[10px] font-mono tracking-tighter uppercase border border-outline-variant/20">Flutter 3.x</span>
+        <span
+          class="px-3 py-1 bg-surface-container-high text-primary text-[10px] font-mono tracking-tighter uppercase border border-outline-variant/20">pub.dev
+          v0.3.2</span>
+        <span
+          class="px-3 py-1 bg-surface-container-high text-secondary text-[10px] font-mono tracking-tighter uppercase border border-outline-variant/20">MIT
+          License</span>
+        <span
+          class="px-3 py-1 bg-surface-container-high text-tertiary text-[10px] font-mono tracking-tighter uppercase border border-outline-variant/20">Flutter
+          3.x</span>
       </div>
       <h1 class="font-headline font-bold text-5xl lg:text-7xl tracking-tighter mb-6 max-w-4xl text-on-surface">
         Debug your Flutter app <span class="text-primary-container">without leaving it</span>
       </h1>
       <p class="text-on-surface-variant text-lg lg:text-xl max-w-2xl mb-12 font-body font-light">
-        Real-time state inspection, network monitoring, and event timeline — all from an in-app overlay. Built for the real world.
+        Real-time state inspection, network monitoring, and event timeline — all from an in-app overlay. Built for the
+        real world.
       </p>
       <div class="w-full max-w-lg mb-12 group">
-        <div class="code-block p-4 border border-outline-variant/30 flex justify-between items-center group-hover:border-primary-container/40 transition-colors">
+        <div
+          class="code-block p-4 border border-outline-variant/30 flex justify-between items-center group-hover:border-primary-container/40 transition-colors">
           <code class="text-secondary text-sm">$ flutter pub add flowscope</code>
           <button onclick="copyInstall()" class="text-outline hover:text-primary transition-colors" title="Copy">
             <span class="material-symbols-outlined text-xl" id="copy-icon">content_copy</span>
@@ -197,23 +224,27 @@
       <div class="max-w-[1440px] mx-auto px-6">
         <div class="mb-16">
           <span class="text-primary font-mono text-xs tracking-[0.2em] uppercase mb-4 block">The Problem</span>
-          <h2 class="font-headline text-3xl lg:text-4xl font-bold tracking-tight text-on-surface">You know your app broke. You just don't know where, when, or why.</h2>
+          <h2 class="font-headline text-3xl lg:text-4xl font-bold tracking-tight text-on-surface">You know your app
+            broke. You just don't know where, when, or why.</h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-1">
           <div class="bg-surface-dim p-8 kinetic-border hover:bg-surface-container-low transition-all">
             <span class="material-symbols-outlined text-primary mb-6 block text-3xl">layers</span>
             <h3 class="font-mono text-on-surface text-lg mb-4 uppercase tracking-tighter">Did the state update?</h3>
-            <p class="text-on-surface-variant font-body text-sm leading-relaxed">Stop guessing if your providers triggered. Inspect the live state tree in real-time as you interact with the UI.</p>
+            <p class="text-on-surface-variant font-body text-sm leading-relaxed">Stop guessing if your providers
+              triggered. Inspect the live state tree in real-time as you interact with the UI.</p>
           </div>
           <div class="bg-surface-dim p-8 kinetic-border hover:bg-surface-container-low transition-all">
             <span class="material-symbols-outlined text-secondary mb-6 block text-3xl">wifi</span>
             <h3 class="font-mono text-on-surface text-lg mb-4 uppercase tracking-tighter">Did the API return?</h3>
-            <p class="text-on-surface-variant font-body text-sm leading-relaxed">No more proxy setup. Captured Dio requests directly in the app. Full bodies, headers, and timing at your fingertips.</p>
+            <p class="text-on-surface-variant font-body text-sm leading-relaxed">No more proxy setup. Captured Dio
+              requests directly in the app. Full bodies, headers, and timing at your fingertips.</p>
           </div>
           <div class="bg-surface-dim p-8 kinetic-border hover:bg-surface-container-low transition-all">
             <span class="material-symbols-outlined text-error mb-6 block text-3xl">visibility_off</span>
             <h3 class="font-mono text-on-surface text-lg mb-4 uppercase tracking-tighter">Why didn't the UI change?</h3>
-            <p class="text-on-surface-variant font-body text-sm leading-relaxed">Track events chronologically. See exactly what happened before that unexpected UI behavior occurred.</p>
+            <p class="text-on-surface-variant font-body text-sm leading-relaxed">Track events chronologically. See
+              exactly what happened before that unexpected UI behavior occurred.</p>
           </div>
         </div>
       </div>
@@ -224,39 +255,46 @@
       <div class="flex flex-col lg:flex-row justify-between items-end mb-16 gap-6">
         <div class="max-w-xl">
           <span class="text-secondary font-mono text-xs tracking-[0.2em] uppercase mb-4 block">The Solution</span>
-          <h2 class="font-headline text-4xl lg:text-5xl font-bold tracking-tight text-on-surface">Three answers. One overlay.</h2>
+          <h2 class="font-headline text-4xl lg:text-5xl font-bold tracking-tight text-on-surface">Three answers. One
+            overlay.</h2>
         </div>
         <p class="text-on-surface-variant font-mono text-xs uppercase max-w-xs text-right hidden lg:block">
-          [FLOWSCOPE V0.3.0]
+          [FLOWSCOPE V0.3.2]
         </p>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <!-- State -->
-        <div class="bg-surface-container-low border-t-4 border-primary p-8 flex flex-col h-full hover:bg-surface-container transition-colors">
+        <div
+          class="bg-surface-container-low border-t-4 border-primary p-8 flex flex-col h-full hover:bg-surface-container transition-colors">
           <div class="flex justify-between items-start mb-12">
             <span class="font-mono text-primary text-xs uppercase tracking-widest">01 / State</span>
             <span class="material-symbols-outlined text-primary opacity-30">database</span>
           </div>
           <h3 class="font-headline text-2xl font-bold mb-6">Riverpod-First Inspection</h3>
-          <p class="text-on-surface-variant mb-8 flex-grow">See every Riverpod provider. Current value, previous value, what changed and when. Full deep-diffing available on every state change.</p>
+          <p class="text-on-surface-variant mb-8 flex-grow">See every Riverpod provider. Current value, previous value,
+            what changed and when. Full deep-diffing available on every state change.</p>
         </div>
         <!-- Timeline -->
-        <div class="bg-surface-container-low border-t-4 border-tertiary p-8 flex flex-col h-full hover:bg-surface-container transition-colors">
+        <div
+          class="bg-surface-container-low border-t-4 border-tertiary p-8 flex flex-col h-full hover:bg-surface-container transition-colors">
           <div class="flex justify-between items-start mb-12">
             <span class="font-mono text-tertiary text-xs uppercase tracking-widest">02 / Timeline</span>
             <span class="material-symbols-outlined text-tertiary opacity-30">history</span>
           </div>
           <h3 class="font-headline text-2xl font-bold mb-6">Unified Event Stream</h3>
-          <p class="text-on-surface-variant mb-8 flex-grow">Everything that happened, in order. STATE, NETWORK, LOG, ERROR — all tagged and color coded for rapid scanning and retrieval.</p>
+          <p class="text-on-surface-variant mb-8 flex-grow">Everything that happened, in order. STATE, NETWORK, LOG,
+            ERROR — all tagged and color coded for rapid scanning and retrieval.</p>
         </div>
         <!-- Network -->
-        <div class="bg-surface-container-low border-t-4 border-secondary p-8 flex flex-col h-full hover:bg-surface-container transition-colors">
+        <div
+          class="bg-surface-container-low border-t-4 border-secondary p-8 flex flex-col h-full hover:bg-surface-container transition-colors">
           <div class="flex justify-between items-start mb-12">
             <span class="font-mono text-secondary text-xs uppercase tracking-widest">03 / Network</span>
             <span class="material-symbols-outlined text-secondary opacity-30">sync_alt</span>
           </div>
           <h3 class="font-headline text-2xl font-bold mb-6">Dio Interceptor Capture</h3>
-          <p class="text-on-surface-variant mb-8 flex-grow">Every Dio request captured. Method, status, duration, request and response body. Inspect JSON payloads without leaving your mobile device.</p>
+          <p class="text-on-surface-variant mb-8 flex-grow">Every Dio request captured. Method, status, duration,
+            request and response body. Inspect JSON payloads without leaving your mobile device.</p>
         </div>
       </div>
     </section>
@@ -266,7 +304,8 @@
       <div class="max-w-[1440px] mx-auto px-6">
         <div class="text-center mb-16">
           <h2 class="font-headline text-4xl font-bold tracking-tight mb-4">Three steps. Then you're done.</h2>
-          <p class="text-on-surface-variant font-mono text-sm uppercase tracking-widest">Integration takes less than 2 minutes.</p>
+          <p class="text-on-surface-variant font-mono text-sm uppercase tracking-widest">Integration takes less than 2
+            minutes.</p>
         </div>
         <div class="space-y-12 max-w-4xl mx-auto">
           <!-- Step 1 -->
@@ -274,7 +313,8 @@
             <div class="lg:w-1/3">
               <span class="text-primary font-mono text-4xl opacity-20 block mb-4">01</span>
               <h4 class="font-mono font-bold text-lg mb-2 uppercase tracking-tighter">Wrap your app</h4>
-              <p class="text-on-surface-variant text-sm font-body">Initialize the FlowScope overlay at the root of your widget tree.</p>
+              <p class="text-on-surface-variant text-sm font-body">Initialize the FlowScope overlay at the root of your
+                widget tree.</p>
             </div>
             <div class="lg:w-2/3 code-block p-6 border border-outline-variant/30 text-xs overflow-x-auto">
               <pre class="text-on-surface"><span class="text-primary">void</span> main() {
@@ -294,7 +334,8 @@
             <div class="lg:w-1/3">
               <span class="text-secondary font-mono text-4xl opacity-20 block mb-4">02</span>
               <h4 class="font-mono font-bold text-lg mb-2 uppercase tracking-tighter">Add Dio Interceptor</h4>
-              <p class="text-on-surface-variant text-sm font-body">Automatically pipe all network traffic into the inspector timeline.</p>
+              <p class="text-on-surface-variant text-sm font-body">Automatically pipe all network traffic into the
+                inspector timeline.</p>
             </div>
             <div class="lg:w-2/3 code-block p-6 border border-outline-variant/30 text-xs overflow-x-auto">
               <pre class="text-on-surface"><span class="text-primary">final</span> dio = Dio();
@@ -308,7 +349,8 @@ dio.interceptors.add(
             <div class="lg:w-1/3">
               <span class="text-tertiary font-mono text-4xl opacity-20 block mb-4">03</span>
               <h4 class="font-mono font-bold text-lg mb-2 uppercase tracking-tighter">Log events</h4>
-              <p class="text-on-surface-variant text-sm font-body">Manually log important events or errors to the global stream.</p>
+              <p class="text-on-surface-variant text-sm font-body">Manually log important events or errors to the global
+                stream.</p>
             </div>
             <div class="lg:w-2/3 code-block p-6 border border-outline-variant/30 text-xs overflow-x-auto">
               <pre class="text-on-surface">FlowLogger.log(<span class="text-secondary">'User tapped login'</span>);
@@ -331,19 +373,24 @@ FlowLogger.log(
           <span class="material-symbols-outlined text-[300px]">precision_manufacturing</span>
         </div>
         <div class="relative z-10">
-          <h2 class="font-headline text-3xl lg:text-5xl font-bold tracking-tighter mb-16 max-w-2xl">Built for Flutter developers who debug in the real world.</h2>
+          <h2 class="font-headline text-3xl lg:text-5xl font-bold tracking-tighter mb-16 max-w-2xl">Built for Flutter
+            developers who debug in the real world.</h2>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div>
-              <h5 class="font-mono font-bold text-primary mb-4 uppercase tracking-widest text-xs">Riverpod-first</h5>
-              <p class="text-on-surface-variant text-sm">Deeply integrated with ProviderObserver to ensure you see every state mutation exactly when it happens.</p>
+              <h5 class="font-mono font-bold text-primary mb-4 uppercase tracking-widest text-xs">Zero friction</h5>
+              <p class="text-on-surface-variant text-sm">No external tools required. No browser tabs. No cables. Just
+                your app and the FlowScope overlay. One line to set up.</p>
             </div>
             <div>
               <h5 class="font-mono font-bold text-primary mb-4 uppercase tracking-widest text-xs">Riverpod & Bloc</h5>
-              <p class="text-on-surface-variant text-sm">Deeply integrated with both ProviderObserver and BlocObserver. Works with Riverpod, Bloc, and Cubit out of the box. Every event is tagged with the screen it occurred on.</p>
+              <p class="text-on-surface-variant text-sm">Deeply integrated with both ProviderObserver and BlocObserver.
+                Works with Riverpod, Bloc, and Cubit out of the box. Every event is tagged with the screen it occurred
+                on.</p>
             </div>
             <div>
               <h5 class="font-mono font-bold text-tertiary mb-4 uppercase tracking-widest text-xs">Dev only</h5>
-              <p class="text-on-surface-variant text-sm">Disable in production with one flag. Zero performance impact for your users.</p>
+              <p class="text-on-surface-variant text-sm">Disable in production with one flag. Zero performance impact
+                for your users.</p>
               <div class="mt-4 code-block p-3 border border-outline-variant/30 text-xs">
                 <pre class="text-on-surface">FlowScope(
   enabled: kDebugMode,
@@ -362,13 +409,16 @@ FlowLogger.log(
   <footer class="w-full py-12 mt-24 border-t border-[#1C1B1B] bg-[#0D0D0D]">
     <div class="flex flex-col md:flex-row justify-between items-center px-12 gap-8 max-w-[1440px] mx-auto">
       <div class="flex items-center gap-3">
-       <img src="images/flowscope.svg" alt="FlowScope" class="w-7 h-7" />
-       <span class="font-['Space_Grotesk'] font-bold text-[#4FC3F7] text-lg uppercase tracking-tight">FlowScope</span>
-     </div>
+        <img src="images/flowscope.svg" alt="FlowScope" class="w-7 h-7" />
+        <span class="font-['Space_Grotesk'] font-bold text-[#4FC3F7] text-lg uppercase tracking-tight">FlowScope</span>
+      </div>
       <div class="flex gap-8">
-        <a class="font-mono text-xs uppercase tracking-widest text-gray-500 hover:text-[#00E676] transition-colors" href="#">Documentation</a>
-        <a class="font-mono text-xs uppercase tracking-widest text-gray-500 hover:text-[#00E676] transition-colors" href="https://github.com/kennedyowusu/flowscope" target="_blank" rel="noopener">GitHub</a>
-        <a class="font-mono text-xs uppercase tracking-widest text-gray-500 hover:text-[#00E676] transition-colors" href="https://github.com/kennedyowusu/flowscope/issues" target="_blank" rel="noopener">Issues</a>
+        <a class="font-mono text-xs uppercase tracking-widest text-gray-500 hover:text-[#00E676] transition-colors"
+          href="#">Documentation</a>
+        <a class="font-mono text-xs uppercase tracking-widest text-gray-500 hover:text-[#00E676] transition-colors"
+          href="https://github.com/kennedyowusu/flowscope" target="_blank" rel="noopener">GitHub</a>
+        <a class="font-mono text-xs uppercase tracking-widest text-gray-500 hover:text-[#00E676] transition-colors"
+          href="https://github.com/kennedyowusu/flowscope/issues" target="_blank" rel="noopener">Issues</a>
       </div>
     </div>
   </footer>
@@ -394,7 +444,6 @@ FlowLogger.log(
       }
     });
 
-    // Copy install command
     function copyInstall() {
       navigator.clipboard.writeText('flutter pub add flowscope').then(() => {
         const icon = document.getElementById('copy-icon');
@@ -409,4 +458,5 @@ FlowLogger.log(
   </script>
 
 </body>
+
 </html>
